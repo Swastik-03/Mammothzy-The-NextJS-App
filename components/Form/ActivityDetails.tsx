@@ -30,6 +30,7 @@ export default function ActivityDetails({ onSaveAndNext }: ActivityDetailsProps)
       setValue("activityCat", "")
     } else {
       setValue("activityCat", type)
+      setValue("acitivityCatOther","")
     }
   }
 
@@ -72,7 +73,7 @@ export default function ActivityDetails({ onSaveAndNext }: ActivityDetailsProps)
         </div>
         {showOtherInput && (
           <input
-            {...register("ActivityCat")}
+            {...register("acitivityCatOther")}
             placeholder="Specify the category"
             className="w-full h-[42px] px-[16px] font-inter text-[14px] font-medium leading-[20px] text-left py-[8px] gap-[8px] rounded-full border border-[#E5E5E5] mt-2 placeholder-[rgba(107, 107, 107, 1)] placeholder:font-inter placeholder:text-[12px] placeholder:font-normal"
           />
@@ -85,6 +86,7 @@ export default function ActivityDetails({ onSaveAndNext }: ActivityDetailsProps)
           className="font-inter text-[14px] font-medium leading-[20px] text-left block"
         >
           About the Activity
+          <span className="text-red-600"> * </span>
         </label>
         <textarea
           id="activityDesc"
@@ -124,7 +126,7 @@ export default function ActivityDetails({ onSaveAndNext }: ActivityDetailsProps)
             </div>
           ))}
         </div>
-        {errors.activityType && <p className="mt-1 text-sm text-red-600">{errors.activityType.message as string}</p>}
+        {errors. activityType && <p className="mt-1 text-sm text-red-600">{errors. activityType.message as string}</p>}
       </div>
 
       <div className="space-y-2">
@@ -157,6 +159,29 @@ export default function ActivityDetails({ onSaveAndNext }: ActivityDetailsProps)
         </div>
         {errors.activitylocType && <p className="mt-1 text-sm text-red-600">{errors.activitylocType.message as string}</p>}
       </div>
+      <div className="space-y-2">
+      <label className="font-inter text-[14px] font-medium leading-[20px] text-left block">
+          How many members can take part in the activity
+        </label>
+      <div className="grid grid-cols-2 gap-4">
+        {/* <div>Item 1</div> */}
+        <input
+          id="minMembers"
+          type="number"
+          {...register("minMembers")}
+          className="font-inter text-[14px] font-medium leading-[20px] text-left w-full h-[42px] px-[16px] py-[8px] gap-[8px] rounded-full border border-[#E5E5E5] placeholder-[rgba(107, 107, 107, 1)] placeholder:font-inter placeholder:text-[12px] placeholder:font-normal"
+          placeholder="Minimum Members"
+        />
+        {/* <div>Item 2</div> */}
+        <input
+          id="maxMembers"
+          type="number"
+          {...register("maxMembers")}
+          className="font-inter text-[14px] font-medium leading-[20px] text-left w-full h-[42px] px-[16px] py-[8px] gap-[8px] rounded-full border border-[#E5E5E5] placeholder-[rgba(107, 107, 107, 1)] placeholder:font-inter placeholder:text-[12px] placeholder:font-normal"
+          placeholder="Maximum Members"
+        />
+      </div>
+      </div>
       <button
         onClick={onSaveAndNext}
         className="w-[169px] h-[44px] px-[20px] py-[12px] gap-[10px] rounded-full text-white bg-[rgba(0,29,68,1)]"
@@ -164,6 +189,8 @@ export default function ActivityDetails({ onSaveAndNext }: ActivityDetailsProps)
         Save and Next
       </button>
     </div>
+
+    
   )
 }
 
